@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleMenu } from '../utils/appSlice';
 import Logo from './assets/images/YouTube_logo.png'
 import { YOUTUBE_SEARCH_API } from '../utils/constant';
+import {cacheResults} from '../utils/searchSlice';
 const Head = ()=>{
 // for search 
 const [searchQuery, setSearchQuery] = useState("");
@@ -12,8 +13,18 @@ const [suggestion, setSuggetion] = useState([]);
 const [showSuggestion, setShowSuggestion] = useState(false);
 // const suggestion = ["hi", "hello"];
 
+
+// subscribe to the store
+const searchCache = useSelector((store)=>store.search);
+
 useEffect(()=>{
-  const timer = setTimeout(()=> getSearchSuggestion(),200);
+  const timer = setTimeout(()=> {
+    if(searchCache[searchQuery]){
+          setSuggetion(searchCache[searchQuery]);
+    }else{
+          getSearchSuggestion();
+    }
+  },200);
 
   return()=>{
     clearTimeout(timer);
@@ -25,6 +36,13 @@ const getSearchSuggestion = async()=>{
   const data = await fetch(YOUTUBE_SEARCH_API+searchQuery);
   const json = await data.json();
   setSuggetion(json[1]);
+
+  // update search resalt using dispatch
+  dispatch(cacheResults(
+    {
+      [searchQuery] : json[1],
+    }
+  ));
   console.log(json);
 }
 const dispatch = useDispatch(); // this is a hook

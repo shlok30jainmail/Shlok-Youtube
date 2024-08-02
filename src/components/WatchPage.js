@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { closeMenu } from "../utils/appSlice";
 import { useSearchParams } from "react-router-dom";
+import CommentContainer from "./CommentContainer";
 
 const Watchpage = ()=>{
     const [searchParams] = useSearchParams();
@@ -13,7 +14,8 @@ const Watchpage = ()=>{
 
     }, [])
     return(
-        <div className="flex justify-center w-[100vw] sm:justify-normal">
+       <div>
+         <div className="flex justify-center w-[100vw] sm:justify-normal">
             <div className="flex justify-center w-[80vw] h-[25vh] sm:w-[75vw] sm:h-[70vh]">
            <iframe 
            width="100%" 
@@ -22,9 +24,14 @@ const Watchpage = ()=>{
            title="YouTube video player" 
            frameborder="0" 
            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-           referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+           referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
         </div>
+
+        <div>
+            <CommentContainer/>
+        </div>
+       </div>
     )
 };
 
