@@ -8,7 +8,7 @@ import { createBrowserRouter, Outlet } from 'react-router-dom';
 import Watchpage from './components/WatchPage';
 // import Sidebar from './components/Sidebar';
 import MainComponent from './components/MainComponent';
-
+import Demo from './components/Demo';
 
 function App() {
   return (
@@ -38,7 +38,11 @@ export const appRouter = createBrowserRouter([
           {
             path:"/watch",
             element:<Watchpage/>
-          }
+          },
+          {
+            path:"/demo",
+            element:<Demo/>
+          },
         ],
       },
       

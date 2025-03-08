@@ -78,7 +78,7 @@ dispatch(toggleMenu());
             <button className='h-10 px-5 py-2 bg-gray-100 border border-gray-300 rounded-r-full'>🔍</button>
           </div>
 
-          <div className='fixed bg-white rounded-lg shadow-lg m-11'>
+          <div className='fixed z-10 bg-white rounded-lg shadow-lg m-11'>
             <ul className='px-2'>
               {/* <li>Iphone</li>
               <li>Ipho</li>

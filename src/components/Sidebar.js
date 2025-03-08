@@ -7,7 +7,7 @@ const Sidebar = () => {
     //Early return
     if(!isMenuOpen) return null;
   return (
-    <div className='w-48 p-5 shadow-lg'>
+    <div className='absolute z-10 w-48 p-5 shadow-lg bg-white h-[100%]'>
         <ul>
         <li><Link to="/">Home</Link></li>
         <li>Shorts</li>
